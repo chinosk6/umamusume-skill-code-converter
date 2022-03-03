@@ -3,12 +3,12 @@ trans_type_symbol_types = ["", "以后", "以前", "", "及以后", "及以前",
 trans_type_symbol_types2 = ["", "", "", "", "", "", "不是"]
 trans_type_symbol_types3 = ["", "", "", "", "", "", "没有"]
 trans_type_symbol = ["", ">", "<", "=", "≥", "≤", "≠"]
+or_ = "或"
 
 
 symbols_int = {
     "is_finalcorner": ["最终弯道", "1"],
     "is_finalcorner_random": ["最终弯道", "1"],
-    "corner": ["弯道", "1"],
     "order_rate": "名次",
     "is_move_lane": "变换跑道",
     "is_lastspurt": "最后冲刺",
@@ -16,7 +16,7 @@ symbols_int = {
     "straight_random": "直线",
     "bashin_diff_behind": ["距离后方马身", "1", trans_type_symbol],
     "bashin_diff_infront": ["距离前方马身", "1", trans_type_symbol],
-    "is_overtake": ["超越", "1", trans_type_symbol_types2],
+    "is_overtake": ["准备超越", "1", trans_type_symbol_types3],
     "all_corner_random": ["弯道", "1", trans_type_symbol_types2],
     "down_slope_random": ["下坡", "1", trans_type_symbol_types2],
     "is_finalcorner_laterhalf": ["最终弯道后半段", "1", trans_type_symbol_types2],
@@ -85,11 +85,16 @@ symbols_int = {
     "straight_front_type": {"types": ["straight_front_type=0", "straight_front_type=1", "向正面直线",
                                       "straight_front_type=3", "straight_front_type=4"], "name": "", "default": 0,
                             "trans_type_symbol": trans_type_symbol_types2},
+    "corner": {"types": ["直线", "弯道"], "name": "", "default": 0,
+               "trans_type_symbol": trans_type_symbol_types2},
     "distance_type": {"types": ["", "短距离", "英里", "中距离", "长距离"], "name": "", "default": 0,
                       "trans_type_symbol": trans_type_symbol_types},
-    "ground_type": {"types": ["", "", "泥地", "", ""], "name": "", "default": 0},
-    "ground_condition": {"types": ["", "良场", "稍重场", "重场", "不良场"], "name": "", "default": 0},
-    "weather": {"types": ["", "晴天", "阴天", "雨天", "雪天"], "name": "", "default": 0},
+    "ground_type": {"types": ["", "", "泥地", "", ""], "name": "", "default": 0,
+                    "trans_type_symbol": trans_type_symbol_types},
+    "ground_condition": {"types": ["", "良场", "稍重场", "重场", "不良场"], "name": "", "default": 0,
+                         "trans_type_symbol": trans_type_symbol_types},
+    "weather": {"types": ["", "晴天", "阴天", "雨天", "雪天"], "name": "", "default": 0,
+                "trans_type_symbol": trans_type_symbol_types},
 }
 
 symbols_none = {
@@ -100,6 +105,10 @@ symbols_none = {
     "random_lot": "触发概率",
     "track_id": "竞马场",
     "distance_rate_after_random": "赛程≥{}%, 随机位置",
+}
+
+sp = {
+    "final_straight": "最终直线"
 }
 
 tracks = {

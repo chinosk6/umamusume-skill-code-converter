@@ -36,7 +36,11 @@ class UmaSkillCodeParser:
         ret = ""
         if types is not None:
             if utype == _types.NotEqualTo:
-                ret = f"{utype_trans}{types[int(value)]}"
+                if len(types) == 2:
+                    _value = int(value)
+                    ret = f"{types[0 if _value == 1 else 1]}"
+                else:
+                    ret = f"{utype_trans}{types[int(value)]}"
             else:
                 ret = f"{types[int(value)]}{utype_trans}"
 
@@ -52,7 +56,7 @@ class UmaSkillCodeParser:
                     ret = natu
 
         ret = f"{natu}{utype_trans}{value}" if ret == "" else ret
-        if "rate" in code:
+        if "rate" in code or "_per" in code:
             ret = f"{ret}%"
         return ret
 
@@ -124,6 +128,31 @@ class UmaSkillCodeParser:
             ret.append([usymble.strip(), utype, value.strip()])
         return ret
 
+    def _final_checker(self, ret: str):
+        def _resplit(_data: str):
+            _ret = ""
+            _split = _data.split(",")
+            for i in _split:
+                _i = i.strip()
+                if _i != "":
+                    _ret += f", {_i}"
+            return _ret[1:].strip()
+
+        _types = vs.TypesOfUma.Compare
+
+        if self.symbols_int["is_finalcorner"][0] in ret and \
+                self.symbols_int["corner"]["types"][0] in ret:
+            ret = ret.replace(self.symbols_int["is_finalcorner"][0], "")  # 最终直线
+            ret = ret.replace(self.symbols_int["corner"]["types"][0],
+                              self._attr.sp["final_straight"])
+
+        _spring = f"({self.symbols_int['season']['types'][1]}) {self._attr.or_} " \
+                  f"({self.symbols_int['season']['types'][1]})"
+        if _spring in ret:
+            ret = ret.replace(_spring, self.symbols_int['season']['types'][1])
+
+        return _resplit(ret)
+
     def get_nature_lang(self, code: str):
         if code is None or code.strip() == "":
             return "-"
@@ -162,12 +191,13 @@ class UmaSkillCodeParser:
                     else:
                         print(usymble)
                         _retstr += f", {usymble}{self._attr.trans_type_symbol[utype]}{value}"
-                    _retstr += " ,或"
-                retstr += f"{_retstr[:-3].strip()}"
+                    _retstr += f" ,{self._attr.or_}"
+                retstr += f"{_retstr[:-2 - len(self._attr.or_)].strip()}"
             except BaseException as e:
                 retstr += f", {scode}"
                 print(scode, e)
         ret = retstr[1:].strip()
-        if ",或," in ret:
-            ret = f"({ret.replace(',或,', ') 或 (')})".replace(" )", ")").replace("( ", "(")
-        return ret
+        if f",{self._attr.or_}," in ret:
+            ret = f"({ret.replace(f',{self._attr.or_},', f') {self._attr.or_} (')})"\
+                .replace(" )", ")").replace("( ", "(")
+        return self._final_checker(ret)
