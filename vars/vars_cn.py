@@ -14,6 +14,7 @@ symbols_int = {
     "is_lastspurt": "最后冲刺",
     "distance_rate": "赛程",
     "straight_random": "直线",
+    "is_last_straight_onetime": "进入最终直线",
     "bashin_diff_behind": ["距离后方马身", "1", trans_type_symbol],
     "bashin_diff_infront": ["距离前方马身", "1", trans_type_symbol],
     "is_overtake": ["准备超越", "1", trans_type_symbol_types3],
