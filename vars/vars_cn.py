@@ -5,7 +5,6 @@ trans_type_symbol_types3 = ["", "", "", "", "", "", "没有"]
 trans_type_symbol = ["", ">", "<", "=", "≥", "≤", "≠"]
 or_ = "或"
 
-
 symbols_int = {
     "is_finalcorner": ["最终弯道", "1"],
     "is_finalcorner_random": ["最终弯道", "1"],
@@ -18,6 +17,7 @@ symbols_int = {
     "bashin_diff_behind": ["距离后方马身", "1", trans_type_symbol],
     "bashin_diff_infront": ["距离前方马身", "1", trans_type_symbol],
     "is_overtake": ["准备超越", "1", trans_type_symbol_types3],
+    "is_activate_any_skill": ["发动任意技能", "1", trans_type_symbol_types3],
     "all_corner_random": ["弯道", "1", trans_type_symbol_types2],
     "down_slope_random": ["下坡", "1", trans_type_symbol_types2],
     "is_finalcorner_laterhalf": ["最终弯道后半段", "1", trans_type_symbol_types2],
@@ -33,6 +33,7 @@ symbols_int = {
     "accumulatetime": ["赛事持续时间", "1", trans_type_symbol],
     "remain_distance": ["剩余距离", "1", trans_type_symbol],
     "blocked_side_continuetime": ["侧面阻挡时间", "1", trans_type_symbol],
+    "behind_near_lane_time_set1": ["后方贴近时间", "1", trans_type_symbol],
     "distance_diff_rate": ["自身处于队伍位置", "1", trans_type_symbol],
     "near_count": ["附近马娘数量", "1", trans_type_symbol],
     "change_order_up_end_after": ["超过人数", "1", trans_type_symbol],
@@ -86,6 +87,12 @@ symbols_int = {
     "straight_front_type": {"types": ["straight_front_type=0", "straight_front_type=1", "向正面直线",
                                       "straight_front_type=3", "straight_front_type=4"], "name": "", "default": 0,
                             "trans_type_symbol": trans_type_symbol_types2},
+    "phase_firsthalf_random": {"types": ["phase_firsthalf_random=0", "中盘前半段", "phase_firsthalf_random=2",
+                                         "phase_firsthalf_random=3", "phase_firsthalf_random=4", "phase_firsthalf_random=5"],
+                               "name": "", "default": 0, "trans_type_symbol": trans_type_symbol_types2},
+    "order_rate_in20_continue": {"types": ["order_rate_in20_continue=0", "前半段一直保持名次≤20%", "order_rate_in20_continue=2",
+                                           "order_rate_in20_continue=3", "order_rate_in20_continue=4", "order_rate_in20_continue=5"],
+                               "name": "", "default": 0, "trans_type_symbol": trans_type_symbol_types2},
     "corner": {"types": ["直线", "弯道"], "name": "", "default": 0,
                "trans_type_symbol": trans_type_symbol_types2},
     "distance_type": {"types": ["", "短距离", "英里", "中距离", "长距离"], "name": "", "default": 0,
